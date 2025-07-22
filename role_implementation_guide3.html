@@ -1,0 +1,182 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Role-Based Dashboard Setup in OUR LARAVEL SETUP</title>
+    <style>
+        body { font-family: Arial, sans-serif; line-height: 1.6; padding: 2rem; background: #fff; color: #000; }
+        h1, h2, h3 { color: #2c3e50; }
+        code, pre { background: #f4f4f4; padding: 0.5rem; display: block; border-left: 3px solid #3498db; margin: 1rem 0; white-space: pre-wrap; }
+        section { margin-bottom: 2rem; }
+        .issue { background: #fffbe6; border-left: 3px solid #f39c12; padding: 1rem; margin-top: 1rem; }
+    </style>
+</head>
+<body>
+    <h1>Complete Role-Based Dashboard Implementation in OUR LARAVEL SETUP</h1>
+
+    <section>
+        <h2>1. Migration Setup</h2>
+        <pre>
+php artisan make:migration create_roles_table
+php artisan make:migration create_role_user_table
+        </pre>
+        <p>Inside the migration files:</p>
+        <pre><code>// create_roles_table.php
+Schema::create('roles', function (Blueprint $table) {
+    $table->id();
+    $table->string('name')->unique();
+    $table->timestamps();
+});</code></pre>
+
+        <pre><code>// create_role_user_table.php
+Schema::create('role_user', function (Blueprint $table) {
+    $table->foreignId('user_id')->constrained()->onDelete('cascade');
+    $table->foreignId('role_id')->constrained()->onDelete('cascade');
+    $table->primary(['user_id', 'role_id']);
+});</code></pre>
+    </section>
+
+    <section>
+        <h2>2. Seeding Roles</h2>
+        <pre>
+php artisan make:seeder RoleSeeder
+        </pre>
+        <code>
+// RoleSeeder.php
+DB::table('roles')->insert([
+    ['name' => 'admin'],
+    ['name' => 'staff'],
+    ['name' => 'customer'],
+    ['name' => 'visitor'],
+]);
+        </code>
+        <pre>
+php artisan db:seed --class=RoleSeeder
+        </pre>
+    </section>
+
+    <section>
+        <h2>3. Assign Role on User Registration</h2>
+        <code>
+// App\Actions\Fortify\CreateNewUser.php (or custom logic)
+$user = User::create([...]);
+$user->roles()->attach(Role::where('name', 'visitor')->first()->id);
+        </code>
+    </section>
+
+    <section>
+        <h2>4. User Model Methods</h2>
+        <code>
+public function roles() {
+    return $this->belongsToMany(Role::class);
+}
+
+public function hasRole($role) {
+    return $this->roles()->where('name', $role)->exists();
+}
+
+public function getPrimaryRoleAttribute() {
+    return $this->roles()->first()?->name;
+}
+        </code>
+    </section>
+
+    <section>
+        <h2>5. Role Middleware</h2>
+        <pre>
+php artisan make:middleware RoleMiddleware
+        </pre>
+        <code>
+// app/Http/Middleware/RoleMiddleware.php
+public function handle($request, Closure $next, $role) {
+    if (!auth()->check() || !auth()->user()->hasRole($role)) {
+        abort(403);
+    }
+    return $next($request);
+}
+        </code>
+        <code>
+// Kernel.php
+'role' => \App\Http\Middleware\RoleMiddleware::class,
+        </code>
+    </section>
+
+    <section>
+        <h2>6. Route Configuration</h2>
+        <code>
+Route::middleware(['auth', 'verified'])->group(function () {
+    Route::get('/dashboard', function () {
+        $role = auth()->user()->primary_role;
+        return match ($role) {
+            'admin'      => redirect()->route('dashboard.admin'),
+            'staff'      => redirect()->route('dashboard.staff'),
+            'instructor' => redirect()->route('dashboard.instructor'),
+            'student'    => redirect()->route('dashboard.student'),
+            'support'    => redirect()->route('dashboard.support'),
+            'visitor'    => redirect()->route('dashboard.visitor'),
+            default      => redirect()->route('dashboard.visitor'),
+        };
+    })->name('dashboard');
+
+    Route::get('/dashboard/admin', AdminDashboard::class)
+        ->middleware('role:admin')->name('dashboard.admin');
+
+    Route::view('/dashboard/staff', 'dashboard.staff')
+        ->middleware('role:staff')->name('dashboard.staff');
+
+    Route::view('/dashboard/instructor', 'dashboard.instructor')
+        ->middleware('role:instructor')->name('dashboard.instructor');
+
+    Route::view('/dashboard/student', 'dashboard.student')
+        ->middleware('role:student')->name('dashboard.student');
+
+    Route::view('/dashboard/support', 'dashboard.support')
+        ->middleware('role:support')->name('dashboard.support');
+
+    Route::view('/dashboard/visitor', 'dashboard.visitor')
+        ->middleware('role:visitor')->name('dashboard.visitor');
+
+    Route::get('/admin/users', UserCrud::class)->name('admin.users.index');
+    Route::get('/admin/roles', RoleCrud::class)->name('admin.roles.index');
+});
+        </code>
+    </section>
+
+    <section>
+        <h2>7. Dashboard Views</h2>
+        <p>Create these Blade files inside <code>resources/views/dashboard</code>:</p>
+        <code>
+<!-- admin.blade.php -->
+<x-app-layout>
+    <h1 class="text-4xl font-bold">ADMIN Dashboard</h1>
+</x-app-layout>
+        </code>
+        <p>Repeat for: <code>staff.blade.php</code>, <code>instructor.blade.php</code>, <code>student.blade.php</code>, <code>support.blade.php</code>, <code>visitor.blade.php</code></p>
+    </section>
+
+    <section>
+        <h2>8. Handling Issues</h2>
+        <div class="issue">
+            <strong>Issue:</strong> "No EventServiceProvider or Listener is being triggered."
+            <br>
+            <strong>Solution:</strong> This system does not use events. Instead, assign roles directly after user creation in controller or Livewire.
+        </div>
+
+        <div class="issue">
+            <strong>Issue:</strong> Blade error when checking role with @role()
+            <br>
+            <strong>Solution:</strong> Define the Blade directive in AppServiceProvider:
+            <code>
+Blade::if('role', fn($role) => auth()->check() && auth()->user()->hasRole($role));
+            </code>
+        </div>
+
+        <div class="issue">
+            <strong>Issue:</strong> Middleware not working for roles
+            <br>
+            <strong>Solution:</strong> Ensure the role middleware is registered in <code>app/Http/Kernel.php</code> under <code>$routeMiddleware</code>.
+        </div>
+    </section>
+</body>
+</html>

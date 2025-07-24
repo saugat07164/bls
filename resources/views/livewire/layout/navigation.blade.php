@@ -21,15 +21,16 @@ new class extends Component
     <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div class="flex justify-between h-16">
             <div class="flex">
-                <!-- Logo -->
+               <!-- Logo -->
 <div class="shrink-0 flex items-center">
     <a href="{{ route('dashboard') }}" wire:navigate>
         <img 
             src="{{ asset('storage/images/logo.svg') }}" 
             alt="{{ config('app.name', 'Birat Laxmi Solutions') }} Logo" 
-            class="h-16 w-auto">
+            class="h-10 w-auto">
     </a>
 </div>
+
 
                 <!-- Navigation Links -->
                 <div class="hidden space-x-8 sm:-my-px sm:ms-10 sm:flex">

@@ -36,21 +36,25 @@
         @livewireStyles
     </head>
     <body class="font-sans text-gray-900 antialiased">
-        <div class="min-h-screen flex flex-col sm:justify-center items-center pt-6 sm:pt-0 bg-gray-100">
-            <!-- Logo Container -->
-            <div id="logo-container" class="mb-6 flex justify-center w-full px-6 sm:px-0">
-                <img 
-                    src="{{ asset('storage/images/logo_with_stroke.png') }}" 
-                    alt="{{ config('app.name') }} Logo"
-                    class="w-full max-w-xs sm:max-w-sm md:max-w-md object-contain hover:brightness-110 transition-all duration-300 ease-in-out border border-transparent hover:border-yellow-300 rounded-md shadow-sm opacity-0"
-                    onerror="this.src='{{ asset('images/default-logo.png') }}'; this.onerror=null;"
-                >
-            </div>
+        <div class="min-h-screen flex flex-col justify-center items-center bg-cover bg-center relative" style="background-image: url('{{ asset('storage/images/banner.jpg') }}');">
 
-            <!-- Login Card -->
-            <div class="w-full sm:max-w-md mt-6 px-6 py-4 bg-white shadow-md overflow-hidden sm:rounded-lg">
-                {{ $slot }}
-            </div>
+    
+
+           <!-- Login Card with Glassmorphic Styling -->
+<div class="w-full sm:max-w-md mt-6 px-6 py-6 bg-white/10 backdrop-blur-md border border-white/20 text-white shadow-xl rounded-xl animate-fly-in relative z-10">
+    <!-- Logo Inside Card -->
+    <div class="flex justify-center mb-6">
+        <img 
+            src="{{ asset('storage/images/logo_with_stroke.png') }}" 
+            alt="{{ config('app.name') }} Logo"
+            class="h-16 w-auto object-contain"
+            onerror="this.src='{{ asset('images/default-logo.png') }}'; this.onerror=null;"
+        >
+    </div>
+
+    {{ $slot }}
+</div>
+
         </div>
 
         @livewireScripts
@@ -69,7 +73,7 @@
                 if (img.complete) img.onload();
             });
         </script>
-        <footer class="bg-[#1A2B4C] text-white mt-10">
+        <footer class="bg-[#1A2B4C] text-white">
     <div class="max-w-7xl mx-auto px-4 py-8">
         <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
 

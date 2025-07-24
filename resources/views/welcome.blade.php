@@ -5,25 +5,39 @@
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <title>BiratLaxmi Solutions</title>
   <link href="/css/output.css" rel="stylesheet" />
+  <link
+  rel="stylesheet"
+  href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css"
+/>
   @livewireStyles
-  <script defer src="https://cdn.jsdelivr.net/npm/alpinejs@3.x.x/dist/cdn.min.js"></script>
 </head>
 <body class="bg-white text-gray-800 overflow-x-hidden">
 
-  <section class="relative h-screen flex items-center justify-center text-center">
-    <video autoplay muted loop playsinline class="absolute w-full h-full object-cover z-0">
-      <source src="{{ asset('storage/videos/welcome.mp4') }}" type="video/mp4">
-    </video>
+ <section class="relative h-screen flex items-center justify-center text-center">
+    <div 
+        class="absolute top-0 left-0 w-full h-full bg-cover bg-center z-0 pointer-events-none"
+        style="background-image: url('{{ asset('storage/images/banner.jpg') }}');">
+    </div>
     <div class="absolute inset-0 bg-black/60 z-10"></div>
     <div class="relative z-20 space-y-8">
-      <h1 class="text-6xl font-extrabold text-white">BiratLaxmi Solutions</h1>
-      <p class="text-2xl text-gray-200">Digital Craftsmanship Starts Here</p>
-      <div class="flex justify-center gap-6">
-        <a href="{{ route('login') }}" class="px-6 py-3 bg-white/30 hover:bg-white/40 rounded-xl text-white shadow-lg text-lg">Login</a>
-        <a href="{{ route('register') }}" class="px-6 py-3 bg-white/30 hover:bg-white/40 rounded-xl text-white shadow-lg text-lg">Register</a>
-      </div>
+        <!-- Logo and Title -->
+        <div class="flex items-center justify-center gap-4">
+            <img src="{{ asset('storage/images/logo.svg') }}" alt="Logo" class="w-16 h-16">
+            <h1 class="text-5xl font-extrabold text-white">BiratLaxmi Solutions</h1>
+        </div>
+
+        <!-- Subtitle -->
+        <p class="text-2xl text-gray-200">Solutions That Matter</p>
+
+        <!-- Buttons -->
+        <div class="flex justify-center gap-6">
+            <a href="{{ route('login') }}" class="px-6 py-3 bg-white/30 hover:bg-white/40 rounded-xl text-white shadow-lg text-lg">Login</a>
+            <a href="{{ route('register') }}" class="px-6 py-3 bg-white/30 hover:bg-white/40 rounded-xl text-white shadow-lg text-lg">Register</a>
+        </div>
     </div>
-  </section>
+</section>
+
+
 
   <section class="py-20 bg-white text-center font-[Inter]">
     <!-- Main heading for the section -->
@@ -171,7 +185,7 @@
 
 
 <section class="relative h-[500px] bg-fixed bg-cover bg-center"
-         style="background-image: url('{{ asset('storage/images/parallax3.jpg') }}');">
+         style="background-image: url('{{ asset('storage/images/parallax2.jpg') }}');">
   <div class="absolute inset-0 bg-black/70"></div>
   <div class="relative z-10 flex flex-col items-center justify-center h-full text-white px-6 text-center">
     <h2 class="text-4xl font-bold">You get what you wanted</h2>
@@ -179,39 +193,47 @@
   </div>
 </section>
 
-<!-- New Section 1: Colorful Tech Features -->
-<section class="py-20 bg-gradient-to-r from-indigo-900 via-purple-800 to-pink-700 text-white px-6">
+<!-- New Section 1: Lightweight Colorful Tech Features -->
+<section class="py-20 bg-gradient-to-br from-indigo-100 via-purple-100 to-pink-100 text-gray-900 px-6">
   <div class="max-w-7xl mx-auto text-center">
-    <h2 class="text-4xl font-bold mb-10">Empowering Your Digital Future</h2>
+    <h2 class="text-4xl font-bold mb-10 text-indigo-900">Empowering Your Digital Future</h2>
+
     <div class="grid md:grid-cols-3 gap-8">
-      <div class="p-8 bg-white bg-opacity-10 rounded-xl shadow-lg hover:shadow-indigo-700 transition-shadow duration-300">
-        <svg class="mx-auto mb-4 w-16 h-16 text-pink-400" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" viewBox="0 0 24 24">
-  <rect x="3" y="8" width="18" height="12" rx="2" ry="2"></rect>
-  <circle cx="7" cy="14" r="1.5"></circle>
-  <circle cx="17" cy="14" r="1.5"></circle>
-  <path d="M12 8V5M9 2h6"></path>
-</svg>
-
-        <h3 class="text-2xl font-semibold mb-2">Cutting-Edge AI Solutions</h3>
-        <p>Harness the power of AI to automate and innovate your business workflows.</p>
+      <!-- Card 1 -->
+      <div class="p-8 bg-white/80 backdrop-blur-sm rounded-xl shadow-md hover:shadow-pink-300 transition duration-300 border border-white/40">
+        <svg class="mx-auto mb-4 w-14 h-14 text-pink-500" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24">
+          <rect x="3" y="8" width="18" height="12" rx="2" ry="2"></rect>
+          <circle cx="7" cy="14" r="1.5"></circle>
+          <circle cx="17" cy="14" r="1.5"></circle>
+          <path d="M12 8V5M9 2h6"></path>
+        </svg>
+        <h3 class="text-xl font-semibold mb-2 text-pink-700">Cutting-Edge AI Solutions</h3>
+        <p class="text-sm text-gray-700">Harness the power of AI to automate and innovate your business workflows.</p>
       </div>
-      <div class="p-8 bg-white bg-opacity-10 rounded-xl shadow-lg hover:shadow-purple-700 transition-shadow duration-300">
-        <svg class="mx-auto mb-4 w-16 h-16 text-indigo-400" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" viewBox="0 0 24 24">
-  <path d="M20 16.58A5 5 0 0 0 18 9h-1.26A8 8 0 1 0 4 16.25" />
-  <path d="M16 17H7a4 4 0 0 1 0-8c.34 0 .68.04 1 .1" />
-</svg>
 
-        <h3 class="text-2xl font-semibold mb-2">Cloud Integration</h3>
-        <p>Seamlessly connect your apps with scalable, secure cloud infrastructure.</p>
+      <!-- Card 2 -->
+      <div class="p-8 bg-white/80 backdrop-blur-sm rounded-xl shadow-md hover:shadow-indigo-300 transition duration-300 border border-white/40">
+        <svg class="mx-auto mb-4 w-14 h-14 text-indigo-500" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24">
+          <path d="M20 16.58A5 5 0 0 0 18 9h-1.26A8 8 0 1 0 4 16.25" />
+          <path d="M16 17H7a4 4 0 0 1 0-8c.34 0 .68.04 1 .1" />
+        </svg>
+        <h3 class="text-xl font-semibold mb-2 text-indigo-700">Cloud Integration</h3>
+        <p class="text-sm text-gray-700">Seamlessly connect your apps with scalable, secure cloud infrastructure.</p>
       </div>
-      <div class="p-8 bg-white bg-opacity-10 rounded-xl shadow-lg hover:shadow-pink-700 transition-shadow duration-300">
-        <svg class="mx-auto mb-4 w-16 h-16 text-purple-400" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" viewBox="0 0 24 24"><rect x="2" y="7" width="20" height="14" rx="2" ry="2"/><path d="M16 3h-8v4h8V3z"/></svg>
-        <h3 class="text-2xl font-semibold mb-2">Custom Software Development</h3>
-        <p>Build software tailored exactly to your unique business needs.</p>
+
+      <!-- Card 3 -->
+      <div class="p-8 bg-white/80 backdrop-blur-sm rounded-xl shadow-md hover:shadow-purple-300 transition duration-300 border border-white/40">
+        <svg class="mx-auto mb-4 w-14 h-14 text-purple-500" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24">
+          <rect x="2" y="7" width="20" height="14" rx="2" ry="2"/>
+          <path d="M16 3h-8v4h8V3z"/>
+        </svg>
+        <h3 class="text-xl font-semibold mb-2 text-purple-700">Custom Software Development</h3>
+        <p class="text-sm text-gray-700">Build software tailored exactly to your unique business needs.</p>
       </div>
     </div>
   </div>
 </section>
+
 
 <!-- New Section 2: Shop/Products -->
 <section class="py-20 bg-gray-50 px-6">
@@ -316,43 +338,41 @@
          id="heroSection">
 
   <!-- Main Hero Content -->
-  <div class="w-full md:w-1/2 flex flex-col items-center justify-center text-center px-6 z-10">
-    <h2 class="text-4xl font-bold mb-3 text-white">Innovate. Integrate. Inspire.</h2>
-    <p class="text-lg mb-4 max-w-xl text-white">We create systems that spark change and evolve with you.</p>
-  </div>
+  <!-- Modern Features Sidebar Panel -->
+<div id="featuresPanel"
+     class="absolute right-0 top-0 h-full w-full bg-white text-gray-800 shadow-2xl p-10 transform translate-x-full transition-transform duration-500 ease-in-out z-30 overflow-y-auto">
 
-  <!-- Blurred Overlay Section (Right) -->
-  <div class="w-1/2 relative hidden md:block">
-    <div class="absolute inset-0 backdrop-blur-sm bg-white/20"></div>
-  </div>
 
-  <!-- Features Sidebar Panel -->
-  <div id="featuresPanel"
-       class="absolute right-0 top-0 h-full w-full md:w-1/2 bg-[#1A2B4C] text-white p-8 transform translate-x-full transition-transform duration-500 ease-in-out z-30">
-    <h3 class="text-2xl font-bold mb-6 text-[#FFD700]">Our Features</h3>
-    <ul class="space-y-4">
-      <li class="flex items-center">
-        <span class="w-3 h-3 bg-[#FFD700] rounded-full mr-3"></span>
-        <span>Custom Software Development</span>
-      </li>
-      <li class="flex items-center">
-        <span class="w-3 h-3 bg-[#6699CC] rounded-full mr-3"></span>
-        <span>System Integration</span>
-      </li>
-      <li class="flex items-center">
-        <span class="w-3 h-3 bg-[#FFD700] rounded-full mr-3"></span>
-        <span>Digital Transformation</span>
-      </li>
-      <li class="flex items-center">
-        <span class="w-3 h-3 bg-[#6699CC] rounded-full mr-3"></span>
-        <span>Cloud Solutions</span>
-      </li>
-      <li class="flex items-center">
-        <span class="w-3 h-3 bg-[#FFD700] rounded-full mr-3"></span>
-        <span>AI & Automation</span>
-      </li>
-    </ul>
+  <h3 class="text-3xl font-extrabold text-blue-900 mb-8 border-b pb-3">What We Offer</h3>
+
+  <div class="grid gap-6 md:grid-cols-2">
+    <div class="bg-blue-50 p-5 rounded-xl border-l-4 border-blue-400 shadow-sm hover:scale-[1.02] transition duration-300">
+      <h4 class="font-semibold text-lg text-blue-800">Custom Software</h4>
+      <p class="text-sm text-blue-700 mt-1">Tailored applications for your unique business needs.</p>
+    </div>
+
+    <div class="bg-yellow-50 p-5 rounded-xl border-l-4 border-yellow-400 shadow-sm hover:scale-[1.02] transition duration-300">
+      <h4 class="font-semibold text-lg text-yellow-700">System Integration</h4>
+      <p class="text-sm text-yellow-600 mt-1">Connecting all your services into a seamless workflow.</p>
+    </div>
+
+    <div class="bg-green-50 p-5 rounded-xl border-l-4 border-green-400 shadow-sm hover:scale-[1.02] transition duration-300">
+      <h4 class="font-semibold text-lg text-green-700">Digital Transformation</h4>
+      <p class="text-sm text-green-600 mt-1">Modernize your business with cutting-edge solutions.</p>
+    </div>
+
+    <div class="bg-purple-50 p-5 rounded-xl border-l-4 border-purple-400 shadow-sm hover:scale-[1.02] transition duration-300">
+      <h4 class="font-semibold text-lg text-purple-700">Cloud Solutions</h4>
+      <p class="text-sm text-purple-600 mt-1">Reliable, secure, and scalable cloud technologies.</p>
+    </div>
+
+    <div class="bg-pink-50 p-5 rounded-xl border-l-4 border-pink-400 shadow-sm hover:scale-[1.02] transition duration-300 col-span-2">
+      <h4 class="font-semibold text-lg text-pink-700">AI & Automation</h4>
+      <p class="text-sm text-pink-600 mt-1">Leverage artificial intelligence to boost efficiency.</p>
+    </div>
   </div>
+</div>
+
 </section>
 
 <script>
@@ -391,25 +411,6 @@
   });
 </script>
 
-<script>
-  const showBtn = document.getElementById('showFeatures');
-  const hideBtn = document.getElementById('hideFeatures');
-  const featuresPanel = document.getElementById('featuresPanel');
-
-  showBtn.addEventListener('click', () => {
-    featuresPanel.classList.remove('translate-x-full');
-    featuresPanel.classList.add('translate-x-0');
-    showBtn.classList.add('hidden');
-    hideBtn.classList.remove('hidden');
-  });
-
-  hideBtn.addEventListener('click', () => {
-    featuresPanel.classList.remove('translate-x-0');
-    featuresPanel.classList.add('translate-x-full');
-    hideBtn.classList.add('hidden');
-    showBtn.classList.remove('hidden');
-  });
-</script>
 
 
 
@@ -510,7 +511,7 @@
 
         for (let i = 0; i < this.steps.length; i++) {
           this.steps[i].hovered = true
-          await new Promise(resolve => setTimeout(resolve, 800)) // wait before lighting next
+          await new Promise(resolve => setTimeout(resolve, 200)) // wait before lighting next
           this.steps[i].hovered = false
         }
       }
@@ -530,9 +531,8 @@
   <div class="grid grid-cols-1 md:grid-cols-3 gap-8 max-w-5xl mx-auto">
     <div class="p-8 bg-white rounded-2xl shadow-lg hover:shadow-indigo-300 transition hover:-translate-y-1 duration-300">
       <div class="text-indigo-500 mb-4">
-        <svg class="w-12 h-12 mx-auto" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24">
-          <path d="M3 12h18M3 6h18M3 18h18" stroke-linecap="round" stroke-linejoin="round"/>
-        </svg>
+        <i class="fas fa-bolt text-yellow-500 text-4xl mx-auto"></i>
+
       </div>
       <h3 class="text-xl font-semibold text-gray-800 mb-2">Lightning Fast Delivery</h3>
       <p class="text-gray-600 text-sm">We deploy at the speed of thought—agile, efficient, and deadline-proof.</p>
@@ -540,9 +540,8 @@
 
     <div class="p-8 bg-white rounded-2xl shadow-lg hover:shadow-purple-300 transition hover:-translate-y-1 duration-300">
       <div class="text-purple-500 mb-4">
-        <svg class="w-12 h-12 mx-auto" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24">
-          <path d="M12 12c2.21 0 4-1.79 4-4S14.21 4 12 4 8 5.79 8 8s1.79 4 4 4zM4 20v-1c0-2.21 3.58-4 8-4s8 1.79 8 4v1H4z" stroke-linecap="round" stroke-linejoin="round"/>
-        </svg>
+        <i class="fas fa-lock text-gray-800 text-3xl mx-auto"></i>
+
       </div>
       <h3 class="text-xl font-semibold text-gray-800 mb-2">Secure by Design</h3>
       <p class="text-gray-600 text-sm">Security isn’t a feature—it’s our architecture’s backbone.</p>
@@ -550,9 +549,8 @@
 
     <div class="p-8 bg-white rounded-2xl shadow-lg hover:shadow-pink-300 transition hover:-translate-y-1 duration-300">
       <div class="text-pink-500 mb-4">
-        <svg class="w-12 h-12 mx-auto" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24">
-          <path d="M12 1v22M5 5l14 14M5 19L19 5" stroke-linecap="round" stroke-linejoin="round"/>
-        </svg>
+       <i class="fas fa-mobile-alt text-gray-800 text-3xl mx-auto"></i>
+
       </div>
       <h3 class="text-xl font-semibold text-gray-800 mb-2">Mobile Friendly</h3>
       <p class="text-gray-600 text-sm">Every pixel adapts—from desktops to palms, fluidly and beautifully.</p>
@@ -574,15 +572,17 @@
   
 
   <section class="relative h-screen flex items-center justify-center text-center">
-    <video autoplay muted loop playsinline class="absolute w-full h-full object-cover z-0">
-      <source src="{{ asset('storage/videos/welcome4.mp4') }}" type="video/mp4">
-    </video>
+    <div 
+        class="absolute top-0 left-0 w-full h-full bg-cover bg-center z-0 pointer-events-none"
+        style="background-image: url('{{ asset('storage/images/banner.jpg') }}');">
+    </div>
     <div class="absolute inset-0 bg-black/70 z-10"></div>
     <div class="relative z-20 space-y-6 text-white">
-      <h2 class="text-5xl font-bold">Watch Your Dreams Take Shape</h2>
-      <p class="text-xl text-gray-300">Reliable Systems, one step closer</p>
+        <h2 class="text-5xl font-bold">Watch Your Dreams Take Shape</h2>
+        <p class="text-xl text-gray-300">Reliable Systems, one step closer</p>
     </div>
-  </section>
+</section>
+
 
   <footer class="bg-[#1A2B4C] text-white text-center py-8">
     <h3 class="text-xl font-bold">BiratLaxmi Solutions</h3>

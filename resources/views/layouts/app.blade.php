@@ -6,7 +6,6 @@
         <meta name="csrf-token" content="{{ csrf_token() }}">
 
         <title>BLS</title>
-
         <!-- Fonts -->
         <link rel="preconnect" href="https://fonts.bunny.net">
         <link href="https://fonts.bunny.net/css?family=figtree:400,500,600&display=swap" rel="stylesheet" />
@@ -16,6 +15,7 @@
 />
         <link rel="stylesheet" href="{{ mix('css/app.css') }}">
         <script src="/js/app.js" defer></script>
+
 @livewireStyles
     </head>
     <body class="font-sans antialiased">
@@ -126,6 +126,8 @@
                         </a>
                     </li>
 <!-- Finance -->
+ @auth
+@if(Auth::user()->hasRole('admin'))
                     <li x-data="{ open: false }">
                         <button @click="open = !open"
                                 class="flex items-center w-full p-3 rounded-lg hover:bg-[#6699CC] transition-colors duration-200 focus:outline-none group">
@@ -146,9 +148,7 @@
                             </li>
                             <li class="flex items-center justify-between">
                                 <a href="{{ route('expenses.index') }}" class="p-2 rounded hover:bg-[#6699CC] flex-1">Expenses</a>
-                                {{--<span class="ml-2 text-xs font-semibold text-yellow-300 bg-yellow-800 bg-opacity-20 px-2 py-0.5 rounded-full animate-pulse shadow-sm border border-yellow-400">
-                                    🚧 Soon
-                                </span>--}}
+                            
                             </li>
                             <li class="flex items-center justify-between">
                                 <a href="#" class="p-2 rounded hover:bg-[#6699CC] flex-1">Progress Overview</a>
@@ -156,8 +156,11 @@
                                     🚧 Soon
                                 </span>
                             </li>
+                          
                         </ul>
                     </li>
+                      @endif
+@endauth 
                     <!-- Courses Dropdown -->
                     <li x-data="{ open: false }">
                         <button @click="open = !open"
